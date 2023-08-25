@@ -1,5 +1,6 @@
-body {
-    background-color: lightgray;
-}
+
 @import "~bootstrap/scss/bootstrap";
 
+@import "./Layout/header.scss";
+
+@import "./component/_navbar.scss";

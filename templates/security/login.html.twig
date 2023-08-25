@@ -25,6 +25,8 @@ error.messageKey|trans(error.messageData, 'security') }}</div>
 
 			<label for="password" class="form-label mt-2">Password:</label>
 			<input type="password" id="password" name="_password" class="form-control"/>
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
 			<div class="d-grid gap-2 d-md-block mt-4 text-center">
 				<button type="submit" class="btn btn-inline btn-primary">Se connecter</button>
 			</div>
