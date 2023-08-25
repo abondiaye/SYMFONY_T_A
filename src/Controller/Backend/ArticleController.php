@@ -28,33 +28,6 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/create', name: '.create', methods: ['GET', 'POST'])]
-    public function create(Request $request): Response
-    {
-        $article = new Article();
-
-        // Récupérer l'utilisateur connecté
-        $user = $this->getUser();
-
-        $form = $this->createForm(ArticleType::class, $article);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Associer l'utilisateur connecté à l'article
-            $article->getUsers($user);
-
-            $this->articleRepo->save($article);
-
-            $this->addFlash('success', 'Article créé avec succès');
-
-            return $this->redirectToRoute('admin.articles.index');
-        }
-
-        return $this->render('Backend/Article/create.html.twig', [
-            'form' => $form->createView(),
-        ]);
-    }
-
     #[Route('/article/create', name: 'admin.article.create')]
     public function createArticle(Request $request, ArticleRepository $repoArticle)
     // la méthode createArticle() est appelée par la route admin.article.create
@@ -71,5 +44,20 @@ class ArticleController extends AbstractController
         return $this->render('Backend/Article/create.html.twig', [
             'form' => $form,
         ]);
+    }
+
+    #[Route('/delete/{id}', name: 'admin.article.delete', methods: ['POST'])]
+    public function deleteArticle(Article $article, Request $request)
+    {
+        if ($this->isCsrfTokenValid('delete' . $article->getId(), $request->get('_token'))) {
+            // Le token est valide on suprrime l'article
+            $this->articleRepo->remove($article);
+            $this->addFlash('success', 'L\'article a bien été supprimé');
+
+            return $this->redirectToRoute('admin.articles.index');
+        }
+        $this->addFlash('error', 'Le token n\'est pas valide');
+
+        return $this->redirectToRoute('admin.articles.index');
     }
 }

@@ -42,6 +42,7 @@ class ArticleRepository extends ServiceEntityRepository
     //     * @return Article[] Returns an array of Article objects
 
     public function findByExampleField($value): array
+    // la méthode findByExampleField() est appelée par la méthode createArticle()
     {
         return $this->createQueryBuilder('a')
             ->andWhere('a.exampleField = :val')
