@@ -2,14 +2,15 @@
 
 namespace App\Controller\Backend;
 
+use index;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin/articles', name: 'admin.articles')]
 class ArticleController extends AbstractController
@@ -50,7 +51,25 @@ class ArticleController extends AbstractController
         }
 
         return $this->render('Backend/Article/create.html.twig', [
-            'form' => $form
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/article/create', name: 'admin.article.create')]
+    public function createArticle(Request $request, ArticleRepository $repoArticle)
+    // la méthode createArticle() est appelée par la route admin.article.create
+    {
+        $article = new Article();
+
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $repoArticle->save($article, true);
+        }
+
+        return $this->render('Backend/Article/create.html.twig', [
+            'form' => $form,
         ]);
     }
 }

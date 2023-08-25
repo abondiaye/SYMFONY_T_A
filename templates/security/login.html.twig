@@ -9,11 +9,11 @@
 	{% if app.user %}
 		<div class="alert alert-success" role="alert">
 			Vous êtes connecté en tant que
-			{{ app.user.username }}.
+			{{ app.user.nom }}.
 		</div>
 	{% endif %}
 	<div class="container-fluid mt-4">
-		<form action="{{ path('login') }}" method="post" class="p-3 form card w-50 mxauto">
+		<form action="{{ path('login') }}" method="post" class="p-3 form card w-50 mx-auto">
 			{% if error %}
 				<div class="alert alert-danger" role="alert">{{
 error.messageKey|trans(error.messageData, 'security') }}</div>

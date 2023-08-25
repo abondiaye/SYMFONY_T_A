@@ -10,7 +10,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 #[ORM\Entity(repositoryClass: DonRepository::class)]
-#[Assert\Choice(choices: ['Orphelin', 'Famille'], message: " Le choix ne concernée: ni pour un Orphelin, ni pour une Famille")]
 class Don
 {
     #[ORM\Id]
@@ -32,6 +31,7 @@ class Don
     private ?string $users = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\Choice(choices: ['Orphelin', 'Famille'], message: " Le choix ne concernée: ni pour un Orphelin, ni pour une Famille")]
     private ?string $type = null;
 
     public function getId(): ?int
