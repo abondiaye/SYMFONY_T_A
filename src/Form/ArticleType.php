@@ -36,6 +36,14 @@ class ArticleType extends AbstractType
                     'rows' => 5,
                 ],
             ])
+            ->add('imageFile', vichImageType::class, [
+                'label' => 'Image',
+                'required' => false,
+                'allow_delete' => false,
+                'download_uri' => false,
+                'image_uri' => false,
+                'asset_helper' => true,
+            ])
             ->add('images', CollectionType::class, [
                 'entry_type' => ArticleImageType::class,
                 'allow_add' => true,
@@ -51,6 +59,7 @@ class ArticleType extends AbstractType
                 'multiple' => true,
                 'autocomplete' => true,
                 'required' => false,
+                'by_reference' => false,
             ]);
     }
 

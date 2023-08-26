@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistique{% endblock %}
+
+{% block body %}
+    <h1>Statistique</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ statistique.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ statistique.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ statistique.description }}</td>
+            </tr>
+            <tr>
+                <th>Creation</th>
+                <td>{{ statistique.creation ? statistique.creation|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_statistique_index') }}">back to list</a>
+
+    <a href="{{ path('app_statistique_edit', {'id': statistique.id}) }}">edit</a>
+
+    {{ include('statistique/_delete_form.html.twig') }}
+{% endblock %}

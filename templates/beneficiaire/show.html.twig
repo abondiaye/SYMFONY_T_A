@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Beneficiaire{% endblock %}
+
+{% block body %}
+    <h1>Beneficiaire</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ beneficiaire.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ beneficiaire.type }}</td>
+            </tr>
+            <tr>
+                <th>Besoin</th>
+                <td>{{ beneficiaire.besoin }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ beneficiaire.description }}</td>
+            </tr>
+            <tr>
+                <th>Source</th>
+                <td>{{ beneficiaire.source }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_beneficiaire_index') }}">back to list</a>
+
+    <a href="{{ path('app_beneficiaire_edit', {'id': beneficiaire.id}) }}">edit</a>
+
+    {{ include('beneficiaire/_delete_form.html.twig') }}
+{% endblock %}
