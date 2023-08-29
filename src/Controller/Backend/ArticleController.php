@@ -28,7 +28,7 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/article/create', name: 'admin.article.create')]
+    #[Route('/create', name: '.create')]
     public function createArticle(Request $request, ArticleRepository $repoArticle)
     // la méthode createArticle() est appelée par la route admin.article.create
     {
@@ -59,5 +59,20 @@ class ArticleController extends AbstractController
         $this->addFlash('error', 'Le token n\'est pas valide');
 
         return $this->redirectToRoute('admin.articles.index');
+    }
+
+    #[Route('/edit/{id}', name: 'admin.article.edit', methods: ['GET', 'POST'])]
+    public function editArticle(Article $article, Request $request, ArticleRepository $repoArticle)
+    {
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $repoArticle->save($article, true);
+        }
+
+        return $this->render('Backend/Article/edit.html.twig', [
+            'form' => $form,
+        ]);
     }
 }
