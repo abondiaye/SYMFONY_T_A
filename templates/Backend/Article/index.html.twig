@@ -5,5 +5,14 @@
 {% endblock %}
 
 {% block body %}
-	<h1>TEST</h1>
+	<h1>Nos Articles</h1>
+	<section class="container article">
+		<h1 class="text-center">Adminitration articles</h1>
+		<a href="{{ path('admin.articles.create') }}" class="btn btn-primary mt-4">{{'article.create'|trans(domain="article") }}</a>
+		<div class="article-details mt-4">
+			{% for article in articles %}
+				{% include 'Components/_Article.html.twig' %}
+			{% endfor %}
+		</div>
+	</section>
 {% endblock %}
