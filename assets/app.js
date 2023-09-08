@@ -17,3 +17,5 @@ import "./images/footer_bottom_bkg.png";
 import "./images/404.png";
 
 require("bootstrap");
+
+import "./js/showPassword";
