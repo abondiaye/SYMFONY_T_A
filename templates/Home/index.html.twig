@@ -4,8 +4,22 @@
 {% endblock %}
 
 {% block body %}
+	<div class="card-container">
+		<div class="card">
+			<div class="card-image">
+				<img class="childschool" src="{{ asset("/images/articles/image26.png")}}" alt="">
+			</div>
+			<div class="card-front">
+				<div>Nous allons organiser une rencontre !</div>
+			</div>
+			<div class="card-back">
+				<div>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ornare non sed est cursus. Vel hac convallis ipsum, facilisi odio pellentesque bibendum viverra tempus.”</div>
+			</div>
+		</div>
+	</div>
 
-	{% for article in articles %}
-		{% include 'Components/_Article.html.twig' %}
-	{% endfor %}
-{% endblock %}
+</div>
+
+{% for article in articles %}
+	{% include 'Components/_Article.html.twig' %}
+{% endfor %}{% endblock %}

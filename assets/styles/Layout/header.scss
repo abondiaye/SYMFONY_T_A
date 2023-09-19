@@ -1,8 +1,62 @@
 // navbar
 
-.logo {
-    opacity: 0.1;
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: left;
+  top: 0;
+  z-index: 999;
+  padding: 7em 0;
+  text-align: center;
+
+  .titre {
+    
+    h1 {
+      color: white;
+      font-size: 4em;
+    }
+    h2 {
+      color: #CBB26A;
+    }
+    h3 {
+      color: white;
+    }
+   
   }
+
+  .logo {
+    position: absolute;
+    top: 313px;
+    width: 16%;
+    left: 13px;
+    
+  }
+
+  .photo-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20%;
+    
+  }
+  .navbar {
+    margin: auto;
+  
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2em;
+
+
+      a {
+        color: #CBB26A;
+        text-decoration: none;
+        font-size: 1em;
+      }
+    }
+  }
+}
 
 
 
