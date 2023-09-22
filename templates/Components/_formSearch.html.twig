@@ -1,0 +1,18 @@
+{{ form_start(form, {'attr': {'class': 'form card p-3 form-filter js-filter-form'}}) }}
+
+<div class="loader">
+	<div class="js-loading spinner-grow text-primary float-right" role="status" aria-hidden="true" style="display: none">
+		<span class="visually-hidden">Loading...</span>
+	</div>
+</div>
+
+{{ form_widget(form.title) }}
+
+<h3 class="my-2">{{ form.tags.vars.label }}</h3>
+{{ form_widget(form.tags, {'attr': {'class': 'd-flex flex-wrap gap-2' }}) }}
+
+<h3 class="my-2">{{ form.authors.vars.label }}</h3>
+{{ form_widget(form.authors, {'attr': {'class': 'd-flex flex-wrap gap-2 mb-4'}}) }}
+
+<button type="reset" id="btn-reset-form" class="btn btn-primary">Reinitialiser les filtres</button>
+{{ form_end(form) }}

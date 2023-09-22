@@ -1,0 +1,44 @@
+<aside class="sidebar">
+	<div class="sidebar-content">
+		<div class="sidebar-info">
+			<h2>Informations:</h2>
+			<p>
+				<strong>
+					<i class="bi bi-calendar-range-fill"></i>
+					Date de création:
+				</strong>
+				{{ article.createdAt|format_datetime('full', 'none') }}
+			</p>
+			<p>
+				<strong>
+					<i class="bi bi-person-badge-fill"></i>
+					Auteur:
+				</strong>
+				{{ article.user.fullName }}
+			</p>
+		</div>
+
+		{% if article.categories|length > 0 %}
+			<div class="sidebar-tags">
+				<h2>Catégories:</h2>
+				<div class="tags-list">
+					{% for categorie in article.categories %}
+						<span class="tag">
+							<i class="bi bi-tags-fill"></i>
+							{{ categorie.title }}
+						</span>
+					{% endfor %}
+				</div>
+			</div>
+		{% endif %}
+
+		{% if commentaires|length > 0 %}
+			<div class="sidebar-comments">
+				<h2>Derniers commentaires</h2>
+				{% for comment in commentaires|slice(0, 3) %}
+					{% include 'Components/_commentCard.html.twig' %}
+				{% endfor %}
+			</div>
+		{% endif %}
+	</div>
+</aside>

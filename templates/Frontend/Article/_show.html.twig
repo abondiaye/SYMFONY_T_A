@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ article.title }}
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	{% if article.images|length > 1 %}
+		{% include 'Frontend/Article/_slider.html.twig' %}
+	{% elseif article.images|length == 1 %}
+		{% include 'Frontend/Article/_banner.html.twig' %}
+	{% else %}
+		<div class="mt-4 text-center">
+			<h1>{{ article.title|sanitize_html }}</h1>
+		</div>
+	{% endif %}
+
+	<section class="article-main-content container mt-4">
+		{% include 'Frontend/Article/_sidebar.html.twig' %}
+		{% include 'Frontend/Article/_content.html.twig' %}
+	</section>
+{% endblock %}

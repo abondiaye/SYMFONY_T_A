@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Administrations des commentaires
+	{{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('admin') }}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('admin') }}
+{% endblock %}
+
+{% block body %}
+	<section class="container mt-4">
+		<h1 class="text-center">Administration des commentaires de l'article:
+			{{ article.title }}</h1>
+		<div class="mt-4 d-flex justify-content-between gap-2">
+			{% for comment in commentaires %}
+				{% include 'Components/_commentCard.html.twig' %}
+			{% endfor %}
+		</div>
+	</section>
+{% endblock %}
