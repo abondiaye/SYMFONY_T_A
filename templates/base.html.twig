@@ -3,10 +3,14 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Welcome!
+			{% block title %}
+				Association
 			{% endblock %}
 		</title>
-		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		<link
+		rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		<!--Feuille de style-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
@@ -20,5 +24,120 @@
 		{% include 'layout/header.html.twig' %}
 		{% block body %}{% endblock %}
 	</body>
+	<footer
+		class="container-fluid bg-light">
+		<!-- Remove the container if you want to extend the Footer to full width. -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous"/>
+		<section class="deneb_cta">
+			<div class="container">
+				<div class="cta_wrapper">
+					<div class="row align-items-center">
+						<div class="col-lg-7">
+							<div class="cta_content">
+								<h3>Cooperation ?</h3>
+								<p>"Il n’existe rien de constant si ce n’est le changement."</p>
+							</div>
+						</div>
+						<div class="col-lg-5">
+							<div class="button_box">
+								<a href="#" class="btn btn-warning">Travaillons ensemble</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<footer class="deneb_footer">
+			<div class="widget_wrapper" style="background-image: url(http://demo.tortoizthemes.com/deneb-html/deneb-ltr/assets/images/footer_bg.png);">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-4 col-md-6 col-12">
+							<div class="widget widegt_about">
+								<div class="widget_title">
+									<img src="assets/images/logo_1.png" class="img-fluid" alt="">
+								</div>
+								<p>
+									Se réunir est un début, rester ensemble est un progrès, travailler ensemble est la réussite.</p>
+								<ul class="social">
+									<li>
+										<a href="#">
+											<i class="fab fa-twitter"></i>
+										</a>
+									</li>
+									<li>
+										<a href="#">
+											<i class="fab fa-instagram"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-12">
+							<div class="widget widget_link">
+								<div class="widget_title">
+									<h4>Links</h4>
+								</div>
+								<ul>
+									<li><a href="#">A propos</a></li>
+									<li><a href="#">Services</a></li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-lg-4 col-md-6 col-sm-12">
+							<div class="widget widget_contact">
+								<div class="widget_title">
+									<h4>Contact
+									</h4>
+								</div>
+								<div class="contact_info">
+									<div class="single_info">
+										<div class="icon">
+											<i class="fas fa-phone-alt"></i>
+										</div>
+										<div class="info">
+											<p>
+												<a href="tel:+919246147999">+33788753680</a>
+											</p>
 
-</html>
+										</div>
+									</div>
+									<div class="single_info">
+										<div class="icon">
+											<i class="fas fa-envelope"></i>
+										</div>
+										<div class="info">
+											<p>
+												<a href="mailto:info@deneb.com">a_ndiaye@outlook.com</a>
+											</p>
+
+										</div>
+									</div>
+									<div class="single_info">
+										<div class="icon">
+											<i class="fas fa-map-marker-alt"></i>
+										</div>
+										<div class="info">
+											<p>1 Cours de la liberté<span>LYON</span>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="copyright_area">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="copyright_text">
+								<p>Copyright &copy; 2020 All rights reserved.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</footer>
+</html></div><!-- End of .container --></footer></html>

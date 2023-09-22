@@ -14,7 +14,7 @@ class CategoriesType extends AbstractType
         $builder
             ->add('titre')
             ->add('description')
-            ->add('actif')
+            // ->add('actif')
             ->add('articles')
         ;
     }

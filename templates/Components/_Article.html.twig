@@ -1,30 +1,14 @@
 <div class="blog-card" id="article-{{ article.id}}">
-	<div class="blog-card-img">
-		<a href="#">
-			{% for image in article.images|slice(0,1) %}
-				<img src="{{ vich_uploader_asset(image) }}" alt="{{ article.titre }}" loading="lazy">
-			{% else %}
-				<img src="https://picsum.photos/300/300" alt="{{ article.titre }}" loading="lazy">
-			{% endfor %}
-		</a>
-	</div>
+	<div class="blog-card-img"></div>
 	<div class="blog-card-content">
 		<p class="blog-card-content-date">
 			<i class="bi bi-calendar-range-fill"></i>
-			{{ article.createdAt|format_date('full', 'none') }}
 		</p>
 		<a href="#">
 			<h2 class="blog-card-content-title">{{ article.titre|sanitize_html }}</h2>
 		</a>
 		<p class="blog-card-content-desc">{{ article.description|slice(0, 150)|sanitize_html|striptags }}...</p>
-		<em class="blog-card-content-tags text-muted">
-			{% for categorie in article.categories %}
-				#{{ categorie.title }}
-			{% endfor %}
-		</em>
-		{% for user in article.users %}
-			<p class="blog-card-content-autor">{{ user.prenom }}</p>
-		{% endfor %}
+		<em class="blog-card-content-tags text-muted"></em>
 		{% if app.request.get('_route') == 'admin.articles.index' %}
 			<div class="d-flex justify-content-between">
 				<a href="{{ path('admin.articles.edit', {id: article.id}) }}" class="btn btn-warning">Modifier</a>

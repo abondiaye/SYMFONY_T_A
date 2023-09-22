@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Article;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ArticleImageRepository;
 use Symfony\Component\HttpFoundation\File\File;
@@ -16,13 +17,14 @@ class ArticleImage
     #[ORM\Column]
     private ?int $id = null;
 
-    #[Vich\UploadableField(mapping: 'articles_image', fileNameProperty: 'imageName', size: 'imageSize')]
-    private ?File $imageFile = null;
+    // NOTE: This is not a mapped field of entity metadata, just a simple property.
+    #[Vich\UploadableField(mapping: 'articles', fileNameProperty: 'imageName', size: 'imageSize')]
+    private ?File $image = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(nullable: true)]
     private ?string $imageName = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $imageSize = null;
 
     #[ORM\Column]
@@ -35,35 +37,6 @@ class ArticleImage
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setImageFile(?File $imageFile = null): void
-    {
-        $this->imageFile = $imageFile;
-        if (null !== $imageFile) {
-            // Il faut biensur que la propriété updatedAt soit crée sur l'Entity.
-            $this->updatedAt = new \DateTimeImmutable();
-        }
-    }
-    public function getImageFile(): ?File
-    {
-        return $this->imageFile;
-    }
-    public function setImageName(?string $imageName): void
-    {
-        $this->imageName = $imageName;
-    }
-    public function getImageName(): ?string
-    {
-        return $this->imageName;
-    }
-    public function setImageSize(?int $imageSize): void
-    {
-        $this->imageSize = $imageSize;
-    }
-    public function getImageSize(): ?int
-    {
-        return $this->imageSize;
     }
 
     public function getUpdatedAt(): ?\DateTimeImmutable
@@ -88,5 +61,52 @@ class ArticleImage
         $this->article = $article;
 
         return $this;
+    }
+
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|null $imageFile
+     */
+    public function setImage(File $imageFile = null): self
+    {
+        $this->image = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    public function getImage(): ?File
+    {
+        return $this->image;
+    }
+
+    public function setImageName(?string $imageName): void
+    {
+        $this->imageName = $imageName;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageSize(?int $imageSize): void
+    {
+        $this->imageSize = $imageSize;
+    }
+
+    public function getImageSize(): ?int
+    {
+        return $this->imageSize;
     }
 }

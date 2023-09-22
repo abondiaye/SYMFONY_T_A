@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Don;
+use App\Entity\Article;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\BeneficiaireRepository;
 use Doctrine\Common\Collections\Collection;
@@ -131,24 +132,5 @@ class Beneficiaire
     public function getArticles(): Collection
     {
         return $this->articles;
-    }
-
-    public function addArticle(Article $article): static
-    {
-        if (!$this->articles->contains($article)) {
-            $this->articles->add($article);
-            $article->addBeneficiaire($this);
-        }
-
-        return $this;
-    }
-
-    public function removeArticle(Article $article): static
-    {
-        if ($this->articles->removeElement($article)) {
-            $article->removeBeneficiaire($this);
-        }
-
-        return $this;
     }
 }

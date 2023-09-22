@@ -2,16 +2,17 @@
 
 namespace App\Entity;
 
-use App\Entity\Statistique;
+use App\Entity\Article;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'L\'adresse email est déjà utilisée par un autre compte, veuillez vous connecter')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -32,37 +33,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $nom = null;
+    private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $prenom = null;
+    private ?string $lastName = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $adresse = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $ville = null;
-
-    #[ORM\Column(length: 10, nullable: true)]
-    private ?string $postal = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $phone = null;
-
-    #[ORM\OneToMany(mappedBy: 'auteur', targetEntity: Statistique::class)]
-    private Collection $statistiques;
-
-    #[ORM\ManyToMany(targetEntity: Article::class, mappedBy: 'users')]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Article::class)]
     private Collection $articles;
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    #[Gedmo\Timestampable(on: 'create')]
-    private $createdAt;
+    #[ORM\Column]
+    private bool $isVerified = false;
+
+
 
     public function __construct()
     {
-        $this->statistiques = new ArrayCollection();
         $this->articles = new ArrayCollection();
+    }
+
+    public function getFullName(): string
+    {
+        return "$this->firstName $this->lastName";
     }
 
     public function getId(): ?int
@@ -135,104 +126,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getNom(): ?string
+    public function getFirstName(): ?string
     {
-        return $this->nom;
+        return $this->firstName;
     }
 
-    public function setNom(string $nom): static
+    public function setFirstName(string $firstName): static
     {
-        $this->nom = $nom;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
-    public function getPrenom(): ?string
+    public function getLastName(): ?string
     {
-        return $this->prenom;
+        return $this->lastName;
     }
 
-    public function setPrenom(string $prenom): static
+    public function setLastName(string $lastName): static
     {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getAdresse(): ?string
-    {
-        return $this->adresse;
-    }
-
-    public function setAdresse(string $adresse): static
-    {
-        $this->adresse = $adresse;
-
-        return $this;
-    }
-
-    public function getVille(): ?string
-    {
-        return $this->ville;
-    }
-
-    public function setVille(string $ville): static
-    {
-        $this->ville = $ville;
-
-        return $this;
-    }
-
-    public function getPostal(): ?string
-    {
-        return $this->postal;
-    }
-
-    public function setPostal(string $postal): static
-    {
-        $this->postal = $postal;
-
-        return $this;
-    }
-
-    public function getPhone(): ?string
-    {
-        return $this->phone;
-    }
-
-    public function setPhone(string $phone): static
-    {
-        $this->phone = $phone;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Statistique>
-     */
-    public function getStatistiques(): Collection
-    {
-        return $this->statistiques;
-    }
-
-    public function addStatistique(Statistique $statistique): static
-    {
-        if (!$this->statistiques->contains($statistique)) {
-            $this->statistiques->add($statistique);
-            $statistique->setAuteur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeStatistique(Statistique $statistique): static
-    {
-        if ($this->statistiques->removeElement($statistique)) {
-            // set the owning side to null (unless already changed)
-            if ($statistique->getAuteur() === $this) {
-                $statistique->setAuteur(null);
-            }
-        }
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -245,39 +158,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->articles;
     }
 
-    public function addArticle(Article $article): static
-    {
-        if (!$this->articles->contains($article)) {
-            $this->articles->add($article);
-            $article->addUser($this);
-        }
 
-        return $this;
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
     }
 
-    public function removeArticle(Article $article): static
+    public function setIsVerified(bool $isVerified): static
     {
-        if ($this->articles->removeElement($article)) {
-            $article->removeUser($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Get the value of createdAt
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * Set the value of createdAt
-     */
-    public function setCreatedAt($createdAt): self
-    {
-        $this->createdAt = $createdAt;
+        $this->isVerified = $isVerified;
 
         return $this;
     }
