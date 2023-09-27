@@ -1,0 +1,122 @@
+{% extends 'api/api.template.html' %}
+{% include 'lib/macros.html' %}
+
+{% block related_components %}
+<li>
+  - {$ doc.docType $} in section <span class="text-primary">{$ doc.section $}</span>
+</li>
+{% endblock %}
+
+{% block additional %}
+{% if doc.commands.length %}
+<h2>Commands</h2>
+<p>You can perform the following CRUD commands on this resource</p>
+<table class="variables-matrix table-commands">
+    <thead>
+    <tr>
+        <th>Method</th>
+        <th>URL</th>
+        <th>Information</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for command in doc.commands %}
+    <tr>
+        <td>
+            <span class="method method-{$ command.method $}">{$ command.method $}</span>
+        </td>
+        <td>{$ command.uri $}</td>
+        <td>
+            <p class="pull-right">
+                {% if command.authentication %}
+                <span class="label label-info">
+                    <i class="glyphicon glyphicon-lock"></i>
+                    authenticated
+                </span>
+                {% endif %}
+                {% for tag in command.labels %}
+                <span class="label label-default">{$ tag $}</span>
+                {% endfor %}
+            </p>
+
+            {$ command.documentation | marked $}
+        </td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% if doc.actions.length %}
+<h2>Actions</h2>
+<p>This resource exposes the following actions</p>
+<table class="variables-matrix table-commands">
+    <thead>
+    <tr>
+        <th>Method</th>
+        <th>URL</th>
+        <th>Information</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for action in doc.actions %}
+    <tr>
+        <td>
+            <span class="method method-{$ action.method $}">{$ action.method $}</span>
+        </td>
+        <td>{$ action.uri $}</td>
+        <td>
+            <p class="pull-right">
+                {% if action.authentication %}
+                <span class="label label-info">
+                    <i class="glyphicon glyphicon-lock"></i>
+                    authenticated
+                </span>
+                {% endif %}
+                {% for tag in action.labels %}
+                <span class="label label-default">{$ tag $}</span>
+                {% endfor %}
+            </p>
+
+            {$ action.documentation | marked $}
+        </td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% if doc.schema.length %}
+<h2>Schema</h2>
+<p>This resource has the following fields available</p>
+<table class="variables-matrix table-schema">
+    <thead>
+    <tr>
+        <th>Field</th>
+        <th>Type</th>
+        <th>Information</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for field in doc.schema %}
+    <tr>
+        <td>
+            {$ field.name $}
+        </td>
+        <td>
+            {$ typeList(field.typeList) $}
+        </td>
+        <td>
+            <p class="pull-right">
+                {% if field.readonly %}<span class="label label-success">read only</span>{% endif %}
+                {% if field.required %}<span class="label label-info">required</span>{% endif %}
+            </p>
+
+            {$ field.description | marked $}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+{% endblock %}
