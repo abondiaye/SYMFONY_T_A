@@ -1,0 +1,14 @@
+# On définit le namespace et la classe de l'objet que nous voulons créer (user)
+App\Entity\User:
+  # On définit le nom de la fixture
+  userAdmin:
+  # On définit les attributs de l'objet que nous voulons créer
+  email: "admin@test.com"
+  username: "Admin-fixt"
+  # Une fonction est appelée avec `<NOM DE MA FONCTION()> en yaml
+  password: "<hashPassword('Test1234')>"
+  age: 40
+  nom: "Dou"
+  prenom: "Abdou"
+  roles: ["ROLE_ADMIN"]
+  ville: "Lyon"
