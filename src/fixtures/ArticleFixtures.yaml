@@ -1,17 +1,15 @@
-# On inclut les autres fichiers de fixtures pour les réutiliser dans ce fichier
 include:
-  - UserFixtures.yaml
   - CategorieFixtures.yaml
+  - UserFixtures.yaml
+
 App\Entity\Article:
   article{1..50}:
-  # Méthode de faxerphp
-  titre: "<words(2, true)>"
-  # Méthode custom à créer
-  content: "<generateLoremDesc()>"
-  active: true
-  # On fait référence au user créé avec le fichier fixtures User avec @Nom de lafixture
-  user: "@userAdmin"
-  # On choisi aléatoirement des catégories créées dans le fichier de fixtures Catégories
-  categories: "<randomElements(@categorie{1..10})>"
-  # Méthode custom à créer
-  createdAt: <generateDate()>
+    title (unique): <words(2, true)>
+    metaTitle (unique): <sentence(5)>
+    metaDescription: <sentence(10)>
+    content: <generateArticleContent()>
+    enable: <boolean()>
+    createdAt: <generateArticleDate()>
+    user: "@user*"
+    categories: "<numberBetween(1, 5)>x @tag*"
+    images: "<numberBetween(1, 3)>x <uploadArticleImage()>"

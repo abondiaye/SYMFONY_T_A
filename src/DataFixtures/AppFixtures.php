@@ -24,26 +24,19 @@ class AppFixtures extends Fixture
 
         $user
             ->setEmail('a_ndiaye@outlook.com')
-            ->setPrenom('abdoulaye')
-            ->setNom('Ndiaye')
+            ->setFirstName('abdoulaye')
+            ->setLastName('Ndiaye')
             ->setRoles(['ROLE_ADMIN'])
             ->setPassword(
                 $this->hasher->hashPassword(new User(), 'Test1234')
-            )
-            ->setAdresse('71 route de vienne')
-            ->setVille('Lyon')
-            ->setPostal('69007')
-            ->setPhone('+33788753680');
-
-        $manager->persist($user);
-
+            );
         for ($i = 1; $i <= 10; ++$i) {
             $user = new User();
 
             $user
                 ->setEmail("user-$i@test.com")
-                ->setPrenom("User $i")
-                ->setNom('Test')
+                ->setLastName("User $i")
+                ->setFirstName('Test')
                 ->setPassword(
                     $this->hasher->hashPassword(new User(), 'Test1234')
                 );

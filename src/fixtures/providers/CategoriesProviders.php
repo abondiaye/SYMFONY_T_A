@@ -2,7 +2,7 @@
 
 namespace App\Fixtures\Providers;
 
-class CategorieProvider
+class CategoriesProvider
 {
     /* Nous définissons notre méthode custom */
     public function randomTag(): string

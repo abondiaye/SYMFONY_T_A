@@ -29,9 +29,3 @@ services:
 
   App\Fixtures\Providers\UserProvider:
     tags: [{ name: nelmio_alice.faker.provider }]
-
-  App\Fixtures\Providers\CategorieProvider:
-    tags: [{ name: nelmio_alice.faker.provider }]
-
-  App\Fixtures\Providers\ArticleProvider:
-    tags: [{ name: nelmio_alice.faker.provider }]

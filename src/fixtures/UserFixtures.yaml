@@ -1,14 +1,18 @@
-# On définit le namespace et la classe de l'objet que nous voulons créer (user)
+# On définit le namespace des objets que nous voulons générer
 App\Entity\User:
-  # On définit le nom de la fixture
+  # On donne un nom à notre fixture
   userAdmin:
-  # On définit les attributs de l'objet que nous voulons créer
-  email: "admin@test.com"
-  username: "Admin-fixt"
-  # Une fonction est appelée avec `<NOM DE MA FONCTION()> en yaml
-  password: "<hashPassword('Test1234')>"
-  age: 40
-  nom: "Dou"
-  prenom: "Abdou"
-  roles: ["ROLE_ADMIN"]
-  ville: "Lyon"
+    # On lui attribut les valeurs
+    firstName: "abdoulaye"
+    lastName: "Ndiaye"
+    email (unique): "admin@test.com"
+    roles: ["ROLE_ADMIN"]
+    isVerified: true
+    password: <hashUserPassword('Test1234!')>
+
+  user{1..10}:
+    firstName: <firstName()>
+    lastName: <lastName()>
+    email (unique): <email()>
+    isVerified: <boolean()>
+    password: <hashUserPassword('Test1234!')>
