@@ -31,6 +31,7 @@ class ArticleProvider
         $files = glob(realpath(\dirname(__DIR__) . '/Images/Articles') . '/*.*');
 
         $file = new File($files[array_rand($files)]);
+
         $uploadFile = new UploadedFile($file, $file->getBaseName());
 
         return (new ArticleImage())

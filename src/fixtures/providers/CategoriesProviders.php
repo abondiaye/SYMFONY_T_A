@@ -4,7 +4,6 @@ namespace App\Fixtures\Providers;
 
 class CategoriesProvider
 {
-    /* Nous définissons notre méthode custom */
     public function randomTag(): string
     {
         /* On liste dans un tableau les choix de catégorie */

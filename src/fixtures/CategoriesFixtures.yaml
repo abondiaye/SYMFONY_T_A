@@ -1,8 +1,6 @@
-App\Entity\Categorie:
-  # Le {1..10} fait référence à une boucle, ce qui veut dire que ce fichier va générer
-  # 10 nouvelles catégories.
-  categorie{1..10}:
-  # Le randomTag est une fonction custom que nous allons devoir créer pour qu'elle fonctionne
-  # Le (unique) fait qu'il ne pourra pas y avoir 2 fois la même catégorie
-  titre (unique): "<randomTag()>"
-  enable: true
+App\Entity\Categories:
+  # le {1..10} permet de créer 10 catégories
+  # categories{1..10}:
+  tag{1..10}:
+    title (unique): "<randomTag()>"
+    enable: true

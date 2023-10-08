@@ -10,7 +10,6 @@
         "doctrine/doctrine-bundle": "^2.10",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.16",
-        "knplabs/knp-gaufrette-bundle": "^0.8.0",
         "knplabs/knp-menu-bundle": "^3.2",
         "phpdocumentor/reflection-docblock": "^5.3",
         "phpstan/phpdoc-parser": "^1.23",
@@ -47,7 +46,7 @@
         "twig/extra-bundle": "^2.12|^3.0",
         "twig/intl-extra": "^3.7",
         "twig/twig": "^2.12|^3.0",
-        "vich/uploader-bundle": "^2.2"
+        "vich/uploader-bundle": "*"
     },
     "config": {
         "allow-plugins": {
