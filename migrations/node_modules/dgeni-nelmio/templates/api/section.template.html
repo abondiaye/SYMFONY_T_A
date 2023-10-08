@@ -1,0 +1,25 @@
+{% extends 'api/api.template.html' %}
+
+{% block additional %}
+{% if doc.resources %}
+<div class="component-breakdown">
+  <h2 id="resources">Resources</h2>
+  <table class="definition-table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for page in doc.resources %}
+    <tr>
+      <td>{$ page.id | link(page.name, page) $}</td>
+      <td>{$ page.description | firstParagraph | marked $}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+{% endblock %}

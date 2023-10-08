@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistique index{% endblock %}
+
+{% block body %}
+    <h1>Statistique index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Creation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for statistique in statistiques %}
+            <tr>
+                <td>{{ statistique.id }}</td>
+                <td>{{ statistique.titre }}</td>
+                <td>{{ statistique.description }}</td>
+                <td>{{ statistique.creation ? statistique.creation|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_statistique_show', {'id': statistique.id}) }}">show</a>
+                    <a href="{{ path('app_statistique_edit', {'id': statistique.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_statistique_new') }}">Create new</a>
+{% endblock %}

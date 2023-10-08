@@ -1,0 +1,50 @@
+{% extends 'api/api.template.html' %}
+{% include 'lib/macros.html' %}
+
+{% block related_components %}
+<li>
+    - resource in section <span class="text-primary">{$ doc.section $}</span>
+</li>
+<li>
+  - {$ doc.docType $} in resource <span class="text-primary">{$ doc.resource $}</span>
+</li>
+{% endblock %}
+
+{% block additional %}
+{% if doc.statusCodes %}
+<h3 id="status-codes">Response status codes</h3>
+<ul>
+    {% for status in doc.statusCodes %}
+    <li><span class="{$ status.code | statusCodeClass $}">{$ status.code $}</span> {$ status.description $}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+{% if doc.response %}
+<h3 id="response">Response object</h3>
+<p>The following data is available on the response of this API call</p>
+{% if doc.response.isArray %}<p>This is response contains an array of objects with the following fields</p>{% endif %}
+{$ paramTable(doc.response) $}
+{% endif %}
+
+{% if doc.requirements or doc.filters or doc.parameters %}
+<h2 id="parameters">Parameters</h2>
+{% if doc.requirements %}
+<h3 id="url-parameters">URL parameters</h3>
+<p>The parameters listed here correspond to the parts in the URL surrounded by curly braces</p>
+{$ paramTable(doc.requirements) $}
+{% endif %}
+
+{% if doc.filters %}
+<h3 id="query-parameters">Query parameters</h3>
+<p>The following parameters can be added to the query string</p>
+{$ paramTable(doc.filters) $}
+{% endif %}
+
+{% if doc.parameters %}
+<h3 id="post-parameters">Post parameters</h3>
+<p>The following parameters are available for use in the request body</p>
+{$ paramTable(doc.parameters) $}
+{% endif %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,33 @@
+.article-main-content {
+    @include flexbox(space-between, wrap, stretch);
+
+    &-desc {
+        width: 65%;
+    }
+
+    .sidebar {
+        width: 30%;
+
+        .sidebar-content {
+            position: sticky;
+            top: 4.5rem;
+        }
+
+        .tags-list {
+            margin-top: 1em;
+            @include flexbox(flex-start, wrap, center, 0.7em);
+
+            span {
+                padding: 0.7em;
+                border-radius: $border-radius;
+                background: $secondary;
+                box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.1);
+                color: $primary;
+            }
+        }
+    }
+}
+
+.js-filter-pagination {
+    @include flexbox(center);
+}

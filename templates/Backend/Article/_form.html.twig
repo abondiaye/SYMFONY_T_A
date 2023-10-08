@@ -1,0 +1,32 @@
+{{ form_start(form) }}
+{{ form_row(form.titre) }}
+{{ form_row(form.description) }}
+{{ form_row(form.categories) }}
+<div class="text-start">
+	<button type="button" class="btn btn-primary btn-add-collection" data-collection-holder-class="images">Ajouter une image</button>
+</div>
+
+<ul class="images mb-3 row add-collection-input" data-index="{{ form.images|length > 0 ? form.images|last.vars.name + 1 : 0 }}" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
+	{% for image in form.images %}
+		<li class="col-md-4">
+			<button type="button" class="btn btn-danger text-light btn-remove-collection">
+				<i class="bi bi-x-octagon-fill"></i>
+			</button>
+			{{ form_row(image, {'label': false}) }}
+		</li>
+	{% endfor %}
+</ul>
+
+{{ form_row(form.content) }}
+{{ form_row(form.enable) }}
+
+<div class="text-center">
+	<button type="submit" class="btn btn-primary btn-inline">Créer</button>
+</div>
+<div class="text-center">
+	<button class="btn btn-primary" type="submit">{{buttonLabel|default('save') }}</button>
+</div>
+
+{{ form_row(form.token) }}
+
+{{ form_end(form, {render_rest: false}) }}

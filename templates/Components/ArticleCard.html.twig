@@ -1,0 +1,15 @@
+<div class="blog-card" id="article-{{ article.id}}">
+	<div class="bloc-card-img">
+		<a href="{{ path('article', {'id': article.id}) }}">
+			{% for image in article.image|slice(0, 1) %}
+				<img src="{{ vich_uploader_asset(image) ~ image.imageName) }}" alt="{{ image.alt }}" class="card-img-top">
+			{% else %}
+				<img src="https://picsum.photo/300/300" alt="{{ article.title}}" class="card-img-top">
+			{% endfor %}
+		</a>
+	</div>
+	<div class="card-body">
+		<h5 class="card-title">{{ article.title }}</h5>
+		<p class="card-text">{{ article.content|striptags|slice(0, 100) ~ '...' }}</p>
+		<a href="{{ path('article', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
+	</div>

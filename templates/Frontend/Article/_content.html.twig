@@ -1,0 +1,26 @@
+<div class="article-main-content-desc">
+	<article>
+		{{ article.content|sanitize_html }}
+	</article>
+
+	<h2>Ajouter un commentaire</h2>
+	{% if app.user %}
+		{{ form_start(form, {'attr': {'class': 'form card p-3 mt-4'}}) }}
+		{{ form_widget(form) }}
+		<div class="text-center">
+			<button type="submit" class="btn btn-primary">Envoyer</button>
+		</div>
+		{{ form_end(form) }}
+	{% else %}
+		<div class="alert alert-info" role="alert">
+			<p>Pour poster un commentaire vous devez
+				<a href="{{ path('app.login') }}">vous connecter</a>.</p>
+		</div>
+	{% endif %}
+
+	<div class="mt-4 d-flex justify-content-between">
+		{% for comment in commentaires %}
+			{% include 'Components/_commentCard.html.twig' %}
+		{% endfor %}
+	</div>
+</div>

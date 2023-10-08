@@ -1,0 +1,18 @@
+# On définit le namespace des objets que nous voulons générer
+App\Entity\User:
+  # On donne un nom à notre fixture
+  userAdmin:
+    # On lui attribut les valeurs
+    firstName: "abdoulaye"
+    lastName: "Ndiaye"
+    email (unique): "admin@test.com"
+    roles: ["ROLE_ADMIN"]
+    isVerified: true
+    password: <hashUserPassword('Test1234!')>
+
+  user{1..10}:
+    firstName: <firstName()>
+    lastName: <lastName()>
+    email (unique): <email()>
+    isVerified: <boolean()>
+    password: <hashUserPassword('Test1234!')>

@@ -1,0 +1,19 @@
+<div class="blog-card" id="article-{{ article.id}}">
+	<div class="blog-card-img"></div>
+	<div class="blog-card-content">
+		<p class="blog-card-content-date">
+			<i class="bi bi-calendar-range-fill"></i>
+		</p>
+		<a href="#">
+			<h2 class="blog-card-content-title">{{ article.titre|sanitize_html }}</h2>
+		</a>
+		<p class="blog-card-content-desc">{{ article.description|slice(0, 150)|sanitize_html|striptags }}...</p>
+		<em class="blog-card-content-tags text-muted"></em>
+		{% if app.request.get('_route') == 'admin.articles.index' %}
+			<div class="d-flex justify-content-between">
+				<a href="{{ path('admin.articles.edit', {id: article.id}) }}" class="btn btn-warning">Modifier</a>
+				{% include 'Backend/Article/_delete.html.twig' %}
+			</div>
+		{% endif %}
+	</div>
+</div>

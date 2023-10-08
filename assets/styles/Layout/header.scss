@@ -1,0 +1,82 @@
+// navbar
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: left;
+  top: 0;
+  z-index: 999;
+  padding: 7em 0;
+  text-align: center;
+
+  .titre {
+    
+    
+      h1 {
+        background-image: repeating-linear-gradient(to right, #a2682a 0%, #be8c3c 8%, #be8c3c 18%, #d3b15f 27%, #faf0a0 35%, #ffffc2 40%, #faf0a0 50%, #d3b15f 58%, #be8c3c 67%, #b17b32 77%, #bb8332 83%, #d4a245 88%, #e1b453 93%, #a4692a 100%);
+        background-size: 150%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 80px;
+        font-weight: 200;
+        font-family: "Yantramanav";
+        filter: drop-shadow(0 0 1px rgba(255, 200, 0, .3));
+        animation: MoveBackgroundPosition 6s ease-in-out in
+    }
+
+    h2 {
+      color:#CBB26A,#ffffc2;
+    }
+
+    h3 {
+      
+        background-image: repeating-linear-gradient(to right, #a2682a 0%, #be8c3c 8%, #be8c3c 18%, #d3b15f 27%, #faf0a0 35%, #ffffc2 40%, #faf0a0 50%, #d3b15f 58%, #be8c3c 67%, #b17b32 77%, #bb8332 83%, #d4a245 88%, #e1b453 93%, #a4692a 100%);
+        background-size: 150%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 80px;
+        font-weight: 200;
+        font-family: "Yantramanav";
+        filter: drop-shadow(0 0 1px rgba(255, 200, 0, .3));
+        animation: MoveBackgroundPosition 6s ease-in-out in
+    }
+   
+  }
+
+  .logo {
+    position: absolute;
+    width: 16%;
+    left: 13px;
+    
+  }
+
+  .photo-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20%;
+    
+  }
+  .navbar {
+    margin: auto;
+    background-color: #357C62;
+  
+    nav {
+      background-color: #357C62;
+      display: flex;
+      align-items: center;
+      gap: 2em;
+
+
+      a {
+        color: #CBB26A;
+        text-decoration: none;
+        font-size: 1em;
+      }
+    }
+  }
+}
+
+
+

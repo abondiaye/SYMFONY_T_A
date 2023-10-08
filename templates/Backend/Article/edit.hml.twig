@@ -1,0 +1,33 @@
+{% extends 'layout.php' %}
+
+{% block title %}
+	Modification de l'article
+	{{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('blog_edit') }}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('admin') }}
+{% endblock %}
+
+
+{% block content %}
+	<h1>404</h1>
+	<p>Page not found</p>
+{% endblock %}
+
+{% block body %}
+	<section class="container mt-4">
+		<h1 class="text-center">{{ 'article.admin.heading.edit' |trans(domain="content") }}</h1>
+		{% include 'Backend/Article/_form.html.twig' with {buttonLabel: 'Modifier' } %}
+	</section>
+{% endblock %}
+
+
+```php
+```

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Beneficiaire index{% endblock %}
+
+{% block body %}
+    <h1>Beneficiaire index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Besoin</th>
+                <th>Description</th>
+                <th>Source</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for beneficiaire in beneficiaires %}
+            <tr>
+                <td>{{ beneficiaire.id }}</td>
+                <td>{{ beneficiaire.type }}</td>
+                <td>{{ beneficiaire.besoin }}</td>
+                <td>{{ beneficiaire.description }}</td>
+                <td>{{ beneficiaire.source }}</td>
+                <td>
+                    <a href="{{ path('app_beneficiaire_show', {'id': beneficiaire.id}) }}">show</a>
+                    <a href="{{ path('app_beneficiaire_edit', {'id': beneficiaire.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_beneficiaire_new') }}">Create new</a>
+{% endblock %}

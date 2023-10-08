@@ -1,0 +1,17 @@
+include:
+  - CategoriesFixtures.yaml
+  - UserFixtures.yaml
+
+App\Entity\Article:
+  article{1..50}:
+    title (unique): <words(2, true)>
+    metaTitle (unique): <sentence(5)>
+    metaDescription: <sentence(10)>
+    content: <generateArticleContent()>
+    enable: <boolean()>
+    createdAt: <generateDate()>
+    user: "@userAdmin"
+    categories: "<numberBetween(1, 5)>x @tag*"
+    # On appelle entre 1 et 5 catégories la fonction
+    # et chaque article aura entre 1 et 3 images aux hasard
+    images: "<numberBetween(1, 3)>x <uploadArticleImage()>"

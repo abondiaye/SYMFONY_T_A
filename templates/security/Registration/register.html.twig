@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Inscription
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<section class="container mt-4">
+
+		{% for flash_error in app.flashes('verify_email_error') %}
+			<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+		{% endfor %}
+
+		<h1 class="text-center">Inscription</h1>
+
+		{{ form_errors(registrationForm) }}
+
+		{{ form_start(registrationForm, {'attr': {'class': 'form card p-3 w-75 mx-auto mt-2'}}) }}
+
+		<div class="row">
+			<div class="col-md-6">{{ form_row(registrationForm.firstName) }}</div>
+			<div class="col-md-6">{{ form_row(registrationForm.lastName) }}</div>
+		</div>
+
+		{{ form_row(registrationForm.email) }}
+
+		<div class="row">
+			<div class="col-md-6">
+				{{ form_row(registrationForm.plainPassword.first) }}
+			</div>
+			<div class="col-md-6">
+				{{ form_row(registrationForm.plainPassword.second) }}
+			</div>
+		</div>
+
+		{{ form_row(registrationForm.agreeTerms) }}
+
+		<div class="text-center">
+			<button type="submit" class="btn btn-primary">S'inscrire</button>
+		</div>
+
+		{{ form_end(registrationForm) }}
+
+	</section>
+{% endblock %}

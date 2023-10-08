@@ -1,0 +1,10 @@
+{% for article in articles %}
+	{% include 'Components/_articleCard.html.twig' %}
+{% else %}
+	<div class="alert alert-info w-100" role="alert" id="article-no-content">
+		<p>
+			<i class="bi bi-info-square-fill"></i>
+			Aucun article ne correspond à votre recherche
+		</p>
+	</div>
+{% endfor %}

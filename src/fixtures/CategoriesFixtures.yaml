@@ -1,0 +1,6 @@
+App\Entity\Categories:
+  # le {1..10} permet de créer 10 catégories
+  # categories{1..10}:
+  tag{1..10}:
+    title (unique): "<randomTag()>"
+    enable: true
