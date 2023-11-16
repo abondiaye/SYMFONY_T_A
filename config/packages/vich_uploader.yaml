@@ -1,42 +1,11 @@
 vich_uploader:
-  # On configure gaufrette
-  knp_gaufrette:
-    stream_wrapper: ~
+  db_driver: orm
 
-    # La on definit le dossier de destination des images
-    adapters:
-      article_adapter:
-        local:
-          directory: "%kernel.project_dir%/public/images/articles"
-
-    # Ici on créé un filesystem que nous pourrons utiliser dans notre controller
-    filesystems:
-      article_fs:
-        adapter: article_adapter
-
-    # On configure  uploader
-    vich_uploader:
-      db_driver: orm
-      storage: gaufrette
-
-    metadata:
-      type: attribute
-      driver: yaml
-
-  #mappings:
-  #   products:
-  #     uri_prefix: /images/products
-  #     upload_destination: '%kernel.project_dir%/public/images/products'
-  #     namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+  metadata:
+    type: attribute
 
   mappings:
-    articles:
-      uri_prefix: /images/articles
-      # Pour le dossier d'upload
-      # on appelle simplement le filesystem que nous avons créé
-      upload_destination: article_fs
+    products:
+      uri_prefix: /images/products
+      upload_destination: '%kernel.project_dir%/public/images/products'
       namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
-      directory_namer: app.directory_namer.article
-      inject_on_load: false
-      delete_on_update: true
-      delete_on_remove: true

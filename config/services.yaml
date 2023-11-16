@@ -36,5 +36,5 @@ services:
   App\Fixtures\Providers\HashPasswordProvider:
     tags: [{ name: nelmio_alice.faker.provider }]
 
-  App\Fixtures\Providers\CategorieProvider:
+  App\Fixtures\Providers\CategoriesProviders:
     tags: [{ name: nelmio_alice.faker.provider }]
